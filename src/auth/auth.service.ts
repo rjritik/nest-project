@@ -62,6 +62,7 @@ export class AuthService {
     } catch (error) {}
   }
 
+  //function to create a signup token
   async signupToken(
     userId: number,
     email: string,
@@ -70,8 +71,9 @@ export class AuthService {
       sub: userId,
       email,
     };
-    const secret = this.config.get('JWT_SECRET');
 
+    const secret = this.config.get('JWT_SECRET');
+    //jwt function for creating the token
     const token = await this.jwt.signAsync(payload, {
       expiresIn: '15m',
       secret: secret,
